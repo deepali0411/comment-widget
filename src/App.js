@@ -1,23 +1,34 @@
 import logo from './logo.svg';
 import './App.css';
+import Comments from './components/comments/Comments';
+import { useState } from 'react';
+import useTraverseTree from './components/hooks/useTraverseTree';
+import { context } from './context';
+import { data } from './data';
 
 function App() {
+  const [commentsData, setCommentsData] = useState(data);
+  const {createComment, deleteComment, updateComment} = useTraverseTree();
+
+ const handleUpdateComments = (task, value, isRoot, id, objId) => {
+  console.log('task: ', task, isRoot);
+  let data;
+  if(task === 'create'){
+     data = createComment(commentsData, value, isRoot, id);
+  }
+  else if(task === 'delete'){
+    data = deleteComment(commentsData, id, isRoot, objId)
+  }
+  else data = updateComment(commentsData, value, id, isRoot, objId)
+  setCommentsData((data));
+  console.log(data)
+ }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <context.Provider value={commentsData}>
+      <Comments handleUpdateComments={handleUpdateComments} />
+      </context.Provider>
     </div>
   );
 }
