@@ -11,7 +11,6 @@ const CommentContainer = ({ handleUpdateComments, isRoot, formValues, id, setIsR
 
   const handlesubmit = (e) => {
     if (e.keyCode === 13 && !e.shiftKey && e.target.value) {
-        console.log('formValues?.id, id: ', formValues?.id, id);
       if (!formValues.isEdit) handleUpdateComments("create", value, isRoot, id, formValues?.objId);
       else handleUpdateComments("update", value, isRoot, formValues?.id, formValues?.objId);
       setValue("");

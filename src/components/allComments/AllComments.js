@@ -48,7 +48,6 @@ const AllComments = ({
   };
 
   const handleReply = (data, e) => {
-    console.log("data: ", data);
     setRepliedValues({
         value: '',
         isEdit: false,

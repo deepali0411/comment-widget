@@ -11,7 +11,6 @@ function App() {
   const {createComment, deleteComment, updateComment} = useTraverseTree();
 
  const handleUpdateComments = (task, value, isRoot, id, objId) => {
-  console.log('task: ', task, isRoot);
   let data;
   if(task === 'create'){
      data = createComment(commentsData, value, isRoot, id);
@@ -21,7 +20,6 @@ function App() {
   }
   else data = updateComment(commentsData, value, id, isRoot, objId)
   setCommentsData((data));
-  console.log(data)
  }
 
   return (

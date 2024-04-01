@@ -34,9 +34,7 @@ const useTraverseTree = () => {
     return {...tree, items: latestNode};
   };
   const updateComment = (tree, value, id, isRoot, objId) => {
-      console.log('objId: ', objId, id, value);
       if (isRoot || objId === tree.id) {
-        console.log('value: ', value);
       const data = tree.items.map((data) => {
         if (data.id === id) return { ...data, message: value };
         else return data;
